@@ -20,3 +20,8 @@ El repositorio es privado; los colaboradores y evaluadores necesitan acceso por 
 Acceso: ktejada@itla.edu.do y edwintejadar@gmail.com, si los recursos no son públicos.
 La aplicación debe demostrarse en vivo; no es obligatorio publicar el sistema.
 Cada integrante debe subir la entrega individualmente. No modificar después del cierre.
+
+Versión actual: LabTrack 2, API Node.js y persistencia SQLite.
+Inicio: Node.js 24, npm start y http://localhost:3000.
+Cuenta: se crea en el primer acceso; no hay contraseña universal.
+Guion actualizado: docs/Guion_video_incremento.md.

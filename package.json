@@ -1,12 +1,16 @@
 {
   "name": "labtrack",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Inventario local de laboratorio para Scrum Poker y Sprint Planning del ITLA",
+  "type": "module",
+  "description": "Inventario de laboratorio con API Node.js, autenticación y base de datos SQLite",
   "scripts": {
-    "test": "node 04_Pruebas/test_labtrack.cjs"
+    "start": "node 01_Sistema/server/index.js",
+    "dev": "node --watch 01_Sistema/server/index.js --host 0.0.0.0",
+    "test": "node --test tests/*.test.js",
+    "test:legacy": "node 04_Pruebas/test_labtrack.cjs"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=24"
   }
 }

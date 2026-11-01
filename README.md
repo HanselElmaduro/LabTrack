@@ -1,77 +1,75 @@
 # LabTrack
 
-Sistema de inventario de equipos de laboratorio para la práctica de **Scrum Poker y Sprint Planning de Programación III, ITLA**.
+**Inventario de laboratorio con CRUD, préstamos, historial y panel de resumen.** Proyecto de Programación III del ITLA para practicar Scrum Poker y Sprint Planning.
 
-## Ejecutar el sistema
+La versión 2 tiene una interfaz renovada, servidor Node.js, API HTTP, autenticación de servidor y base de datos SQLite. Los datos permanecen al cerrar el navegador o reiniciar el servidor.
+
+## Iniciar en tu computadora
+
+Requisito: **Node.js 24 o posterior**. No se necesita instalar SQL Server ni dependencias npm.
 
 ```bash
 git clone https://github.com/HanselElmaduro/LabTrack.git
 cd LabTrack
+npm start
 ```
 
-1. Descarga o clona este repositorio.
-2. Abre `01_Sistema/LabTrack.html` en tu navegador.
-3. Usa las credenciales de demostración: usuario **admin**, contraseña **1234**.
+Si ya habías clonado el repositorio, ejecuta `git pull --ff-only` en su carpeta antes de iniciarlo.
 
-No requiere instalar paquetes, servidor ni base de datos. También puedes abrir el HTML con Live Server desde VS Code.
+Abre **http://localhost:3000**. La primera vez, crea tu cuenta administradora con nombre, usuario y contraseña de al menos diez caracteres. No hay credenciales universales. Después inicia sesión con esa cuenta. La sesión vence a las ocho horas o cuando la cierras.
 
-## Funciones
+En Windows también puedes abrir **Iniciar_LabTrack.bat**. Mantén la terminal abierta durante el uso y la presentación. Pulsa `Ctrl+C` para detener el servidor. Una vez instalado Node y descargado el proyecto, la demostración local no necesita Internet.
 
-- Registrar, consultar, buscar, editar y eliminar equipos.
-- Validar campos obligatorios y códigos únicos sin distinguir mayúsculas.
-- Filtrar equipos por estado.
-- Registrar préstamos con solicitante y fecha; registrar devoluciones.
-- Bloquear la eliminación de equipos prestados.
-- Consultar cantidades totales y por estado.
-- Descargar un respaldo JSON del inventario.
+**La versión actual se ejecuta con el servidor.** Abrir el HTML con Live Server no ejecuta la API ni la base de datos. `01_Sistema/LabTrack.html` contiene instrucciones para abrirla. El prototipo anterior se conserva en `01_Sistema/legacy/` solo como referencia.
 
-## Alcance del prototipo
+## Funcionalidades
 
-Los datos se guardan en **localStorage del navegador**. La sesión de demostración utiliza sessionStorage. No hay backend, sincronización entre integrantes ni autenticación de producción. Las credenciales están incluidas en el código por ser una demostración local. El respaldo JSON tiene exportación; todavía no hay una función para importarlo.
+- **Resumen:** cifras globales, distribución por estado, equipos recientes, préstamos y actividad.
+- **Equipos:** CRUD, código único, filtros por estado y categoría, búsqueda por nombre/código/marca, paginación y ficha detallada.
+- **Préstamos:** solicitante, fecha, referencia opcional, devolución prevista, bloqueo de préstamos incompatibles y devolución confirmada.
+- **Historial:** conserva los préstamos devueltos incluso si el equipo se elimina después.
+- **Actividad:** registra altas, cambios, bajas, préstamos y devoluciones con fecha y usuario.
+- **Exportación:** inventario CSV y respaldo JSON de equipos y préstamos. No hay importador automático.
+
+El inventario inicial incluye doce equipos ficticios para prácticas; se pueden editar o eliminar y no reaparecen al reiniciar. Los datos no se guardan en localStorage. La sesión utiliza cookie HttpOnly; las contraseñas se almacenan como hash scrypt.
 
 ## Estructura
 
 | Ruta | Contenido |
 | --- | --- |
-| `01_Sistema/` | Aplicación HTML autocontenida |
-| `02_Planificacion/` | Plan en Word y PDF, backlog, registro de Poker y referencias de Jira |
-| `03_Evidencias/` | Registro de enlaces y alcance de la verificación |
-| `04_Pruebas/` | Pruebas de lógica con Node.js y DOM simulado |
-| `CONTRIBUTING.md` | Pasos para trabajar en ramas y revisar cambios |
+| `01_Sistema/public/` | Interfaz HTML, CSS y JavaScript |
+| `01_Sistema/server/` | API, autenticación, validaciones y SQLite |
+| `01_Sistema/data/` | Datos locales de ejecución, excluidos de Git |
+| `02_Planificacion/` | Plan Word/PDF, respaldo del backlog y registro de Poker |
+| `03_Evidencias/` | Enlaces y alcance de la verificación |
+| `tests/` | Pruebas de integración de la versión actual |
+| `04_Pruebas/` | Pruebas históricas del primer prototipo |
+| `docs/` | Arquitectura y guion actualizado para los siete integrantes |
 
-## Planificación en Jira
-
-[Abrir las actividades de LabTrack](https://hanselh151.atlassian.net/issues?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20labtrack).
-
-El backlog tiene cuatro épicas, siete historias y 56 subtareas. **Ya está cargado: no vuelvas a importar `Backlog_Jira.csv`.**
-
-El sprint `LabTrack · Sprint 1` está preparado. Las fechas, el alcance definitivo y los puntos acordados por el equipo deben completarse con los resultados reales. Las estimaciones orientativas de los documentos no sustituyen una votación de Scrum Poker.
-
-## Pruebas
-
-Con Node.js 18 o posterior instalado:
+## Comprobar el sistema
 
 ```bash
 npm test
 ```
 
-No hace falta ejecutar `npm install`: no hay dependencias. El comando ejecuta 27 comprobaciones del JavaScript con DOM y almacenamiento simulados y actualiza `03_Evidencias/Verificacion_del_sistema.txt`.
+Ejecuta 13 pruebas de integración con HTTP real y SQLite temporal: autenticación, CRUD, validaciones, conflictos de edición, préstamos, exportaciones, seguridad de rutas y persistencia tras reiniciar. Las pruebas no utilizan ni eliminan el inventario de la aplicación.
 
-Estas comprobaciones no verifican la apariencia, las restricciones nativas de formularios ni la descarga real en el navegador. Antes de grabar, el equipo debe recorrer manualmente el CRUD, los préstamos y las devoluciones en su navegador.
+La interfaz de acceso se revisó visualmente. La validación manual de las pantallas internas y del recorrido completo en navegador sigue pendiente; los detalles están en `03_Evidencias/Verificacion_del_sistema.txt`. El grupo debe ensayar el guion antes de grabar.
 
-## Trabajo en equipo
+Para desarrollo con reinicio automático, usa `npm run dev`.
 
-Trabaja en una rama por cambio, usa la clave de Jira en los commits y abre un pull request para revisión. Consulta [CONTRIBUTING.md](CONTRIBUTING.md).
+## Jira y trabajo en equipo
 
-Git sincroniza el código y los documentos; cada navegador conserva su propio inventario de prueba. Los colaboradores deben ser invitados al repositorio con sus cuentas reales.
+[Actividades de LabTrack en Jira](https://hanselh151.atlassian.net/issues?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20labtrack).
 
-## Entrega académica pendiente
+El backlog conserva **4 épicas, 7 historias y 56 subtareas**. Ya está cargado: no vuelvas a importar `Backlog_Jira.csv`. Las fechas y puntos finales del sprint requieren los acuerdos reales del equipo. La versión con servidor debe estimarse considerando ese alcance actualizado.
 
-- Confirmar roles, fechas, capacidad y alcance del sprint.
-- Grabar Scrum Poker y registrar los puntos reales en Jira y en el registro de votación.
-- Grabar la demostración funcional y presentar el sistema en vivo en clase.
-- Reunir videos, documentos y enlaces en la carpeta compartida de OneDrive requerida por la consigna.
-- Comprobar el acceso de los evaluadores y la entrega individual de los siete integrantes.
-- Mantener la entrega sin modificaciones después de su fecha de cierre.
+Trabaja en una rama por cambio y usa la clave de Jira en los commits; consulta [CONTRIBUTING.md](CONTRIBUTING.md). Los colaboradores necesitan acceso al repositorio privado. Cada computadora tiene su propia base; para compartir inventario se requiere conectarse al mismo servidor. Este repositorio no incluye un servidor publicado.
 
-Este repositorio sirve como espacio de trabajo. La entrega de la asignación se realiza mediante el enlace de OneDrive.
+## Documentación y entrega
+
+- [Arquitectura y API](docs/Arquitectura.md).
+- [Guion del video del incremento para los siete integrantes](docs/Guion_video_incremento.md).
+- Plan de sprint en Word y PDF en `02_Planificacion/`; conserva fechas propuestas y puntos pendientes.
+
+La entrega académica requiere los dos videos en OneDrive, acceso a Jira, demostración en vivo y entrega individual de los siete integrantes. GitHub es el espacio de trabajo y se enlaza desde la carpeta de OneDrive. No modificar los entregables después del cierre.

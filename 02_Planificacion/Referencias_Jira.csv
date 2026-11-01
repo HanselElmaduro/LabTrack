@@ -1,12 +1,12 @@
 ﻿ID del CSV,Clave Jira,Título,Padre,Enlace
-1,KAN-4,LabTrack · E1 - Acceso de demostración,,https://hanselh151.atlassian.net/browse/KAN-4
+1,KAN-4,LabTrack · E1 - Acceso y sesión,,https://hanselh151.atlassian.net/browse/KAN-4
 2,KAN-5,LabTrack · E2 - Gestión de equipos,,https://hanselh151.atlassian.net/browse/KAN-5
 3,KAN-6,LabTrack · E3 - Préstamos de equipos,,https://hanselh151.atlassian.net/browse/KAN-6
 4,KAN-7,LabTrack · E4 - Panel del inventario,,https://hanselh151.atlassian.net/browse/KAN-7
 101,KAN-8,LabTrack · HU-01 - Registrar equipo,KAN-5,https://hanselh151.atlassian.net/browse/KAN-8
 1001,KAN-9,LabTrack · HU-01 T01 - Definir los campos del equipo y las reglas de código único y campos obligatorios.,KAN-8,https://hanselh151.atlassian.net/browse/KAN-9
 1002,KAN-10,LabTrack · HU-01 T02 - Implementar formulario y alta de equipos con identificador único.,KAN-8,https://hanselh151.atlassian.net/browse/KAN-10
-1003,KAN-11,LabTrack · HU-01 T03 - Guardar el inventario en localStorage y avisar si la escritura falla.,KAN-8,https://hanselh151.atlassian.net/browse/KAN-11
+1003,KAN-11,LabTrack · HU-01 T03 - Implementar alta mediante API y persistencia SQLite con validación en servidor.,KAN-8,https://hanselh151.atlassian.net/browse/KAN-11
 1004,KAN-12,"LabTrack · HU-01 T04 - Probar altas válidas, duplicados, espacios en blanco y persistencia tras recargar.",KAN-8,https://hanselh151.atlassian.net/browse/KAN-12
 1005,KAN-13,"LabTrack · HU-01 T05 - Validar etiquetas, mensajes y facilidad de uso del formulario.",KAN-8,https://hanselh151.atlassian.net/browse/KAN-13
 1006,KAN-14,LabTrack · HU-01 T06 - Documentar los pasos para registrar un equipo en el manual.,KAN-8,https://hanselh151.atlassian.net/browse/KAN-14
@@ -39,22 +39,22 @@
 1030,KAN-41,LabTrack · HU-04 T06 - Documentar eliminación y tratamiento de equipos prestados.,KAN-35,https://hanselh151.atlassian.net/browse/KAN-41
 1031,KAN-42,LabTrack · HU-04 T07 - Ejecutar los criterios de HU-04 sin afectar otros registros.,KAN-35,https://hanselh151.atlassian.net/browse/KAN-42
 1032,KAN-43,LabTrack · HU-04 T08 - Revisar prevención de borrados accidentales.,KAN-35,https://hanselh151.atlassian.net/browse/KAN-43
-105,KAN-44,LabTrack · HU-05 - Iniciar sesión de demostración,KAN-4,https://hanselh151.atlassian.net/browse/KAN-44
-1033,KAN-45,LabTrack · HU-05 T01 - Definir acceso de demostración y alcance de sessionStorage.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-45
-1034,KAN-46,LabTrack · HU-05 T02 - Implementar validación local de credenciales y cierre de sesión.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-46
-1035,KAN-47,LabTrack · HU-05 T03 - Gestionar estado de sesión en la pestaña sin modificar el inventario guardado.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-47
+105,KAN-44,LabTrack · HU-05 - Iniciar sesión,KAN-4,https://hanselh151.atlassian.net/browse/KAN-44
+1033,KAN-45,"LabTrack · HU-05 T01 - Definir cuenta inicial, hash de contraseñas y sesión de ocho horas.",KAN-44,https://hanselh151.atlassian.net/browse/KAN-45
+1034,KAN-46,"LabTrack · HU-05 T02 - Implementar acceso en servidor, cookie HttpOnly y cierre de sesión.",KAN-44,https://hanselh151.atlassian.net/browse/KAN-46
+1035,KAN-47,LabTrack · HU-05 T03 - Persistir sesiones en SQLite y proteger operaciones con token CSRF.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-47
 1036,KAN-48,"LabTrack · HU-05 T04 - Probar login válido, inválido, recarga y cierre de sesión.",KAN-44,https://hanselh151.atlassian.net/browse/KAN-48
 1037,KAN-49,"LabTrack · HU-05 T05 - Validar etiquetas, mensaje de error y acceso con la tecla Enter.",KAN-44,https://hanselh151.atlassian.net/browse/KAN-49
-1038,KAN-50,LabTrack · HU-05 T06 - Documentar credenciales y limitaciones del acceso local.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-50
+1038,KAN-50,"LabTrack · HU-05 T06 - Documentar configuración inicial, acceso y alcance de la sesión.",KAN-44,https://hanselh151.atlassian.net/browse/KAN-50
 1039,KAN-51,LabTrack · HU-05 T07 - Ejecutar los criterios de HU-05 y verificar visibilidad de pantallas.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-51
 1040,KAN-52,LabTrack · HU-05 T08 - Revisar el flujo de entrada y salida con el equipo.,KAN-44,https://hanselh151.atlassian.net/browse/KAN-52
 106,KAN-53,LabTrack · HU-06 - Registrar préstamo y devolución,KAN-6,https://hanselh151.atlassian.net/browse/KAN-53
 1041,KAN-54,LabTrack · HU-06 T01 - Definir transiciones de estado y reglas de solicitante y fecha.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-54
 1042,KAN-55,LabTrack · HU-06 T02 - Implementar diálogo de préstamo y acción de devolución.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-55
-1043,KAN-56,LabTrack · HU-06 T03 - Persistir fecha y solicitante en el registro del equipo.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-56
+1043,KAN-56,LabTrack · HU-06 T03 - Persistir préstamos en SQLite y actualizar el estado dentro de una transacción.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-56
 1044,KAN-57,"LabTrack · HU-06 T04 - Probar préstamo, fecha futura, espacios, devolución y persistencia.",KAN-53,https://hanselh151.atlassian.net/browse/KAN-57
 1045,KAN-58,LabTrack · HU-06 T05 - Validar fecha visible en formato día mes año y acciones según estado.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-58
-1046,KAN-59,"LabTrack · HU-06 T06 - Documentar préstamo, devolución y ausencia de historial de préstamos.",KAN-53,https://hanselh151.atlassian.net/browse/KAN-59
+1046,KAN-59,"LabTrack · HU-06 T06 - Documentar préstamos activos, devoluciones e historial conservado.",KAN-53,https://hanselh151.atlassian.net/browse/KAN-59
 1047,KAN-60,LabTrack · HU-06 T07 - Ejecutar los criterios de HU-06 y bloqueo de eliminación.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-60
 1048,KAN-61,LabTrack · HU-06 T08 - Revisar con el equipo que el flujo represente un préstamo completo.,KAN-53,https://hanselh151.atlassian.net/browse/KAN-61
 107,KAN-62,LabTrack · HU-07 - Consultar panel de resumen,KAN-7,https://hanselh151.atlassian.net/browse/KAN-62

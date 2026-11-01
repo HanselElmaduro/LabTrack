@@ -1,10 +1,7 @@
-PRUEBAS DE LÓGICA
+PRUEBAS HISTORICAS DEL PROTOTIPO 1
 
-Requieren Node.js con Blob disponible. No requieren paquetes adicionales.
-Desde la carpeta principal del paquete ejecutar:
+Este script usa un DOM simulado y el HTML de 01_Sistema/legacy/LabTrack_v1.html.
+Se conserva como referencia del desarrollo anterior. No valida la versión 2.
 
-node 04_Pruebas/test_labtrack.cjs
-
-Las pruebas simulan DOM y almacenamiento. No sustituyen el ensayo en navegador.
-El informe se escribe en 03_Evidencias/Verificacion_del_sistema.txt.
-No ejecutar ni modificar entregables después del cierre de la tarea.
+Para comprobar el sistema actual, ejecutar npm test desde la raíz del proyecto.
+Las pruebas actuales están en tests/api.test.js y utilizan HTTP real y SQLite temporal.

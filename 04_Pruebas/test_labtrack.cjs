@@ -1,5 +1,5 @@
 const path=require('path');const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
-const src=fs.readFileSync(path.join(__dirname,'../01_Sistema/LabTrack.html'),'utf8').split('<script>')[1].split('</script>')[0];
+const src=fs.readFileSync(path.join(__dirname,'../01_Sistema/legacy/LabTrack_v1.html'),'utf8').split('<script>')[1].split('</script>')[0];
 const tests=[];function ok(name,f){f();tests.push(name)}
 function app(persisted){
  const memory=persisted||new Map(),sessions=new Map(),nodes={},forms={},dialogs=[];
@@ -42,4 +42,4 @@ ok('Carga de JSON corrupto avisa y permite abrir ejemplos',()=>{const b=app(new 
 ok('Contenido de usuario se escapa en HTML',()=>{const b=app();b.fill(null,'EQ-HTML','<img src=x onerror=alert(1)>');assert.match(b.node('tb').innerHTML,/&lt;img/);assert.doesNotMatch(b.node('tb').innerHTML,/<img src=x/)});
 ok('Respaldo descarga sin error de ejecución',()=>{const b=app();b.node('backup').onclick()});
 const report='VERIFICACIÓN DE LABTRACK\n\n'+tests.length+' comprobaciones de lógica aprobadas.\nMétodo: ejecución del JavaScript original con Node.js y un DOM simulado.\nSe probaron controladores y persistencia simulada, no un navegador gráfico real.\nNo se verificaron visualmente las pantallas, restricciones nativas de formularios ni la descarga real en el navegador.\nEl equipo debe realizar el recorrido del manual en su navegador antes de grabar.\n\n'+tests.map((x,i)=>`${i+1}. APROBADA: ${x}`).join('\n')+'\n';
-fs.writeFileSync(path.join(__dirname,'../03_Evidencias/Verificacion_del_sistema.txt'),report);console.log(report);
+fs.writeFileSync(path.join(__dirname,'../03_Evidencias/Verificacion_legacy.txt'),report);console.log(report);

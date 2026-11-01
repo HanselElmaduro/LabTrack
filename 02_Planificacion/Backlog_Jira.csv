@@ -1,5 +1,5 @@
 ﻿Work item ID,Parent,Work type,Summary,Description,Status,Story Points,Labels
-1,,Epic,E1 - Acceso de demostración,Flujo local de entrada y salida del prototipo.,To Do,,labtrack
+1,,Epic,E1 - Acceso y sesión,Cuenta inicial y sesión validada por el servidor.,To Do,,labtrack
 2,,Epic,E2 - Gestión de equipos,"Inventario con altas, consultas, cambios y bajas.",To Do,,labtrack
 3,,Epic,E3 - Préstamos de equipos,"Solicitante, fecha de préstamo y devolución.",To Do,,labtrack
 4,,Epic,E4 - Panel del inventario,Resumen global de equipos según estado.,To Do,,labtrack
@@ -19,9 +19,9 @@ Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 Responsabilidad propuesta: Gabriel Robles.
 Resultado esperado: Implementar formulario y alta de equipos con identificador único.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
-1003,101,Sub-task,HU-01 T03 - Guardar el inventario en localStorage y avisar si la escritura falla.,"Tipo: Técnica.
+1003,101,Sub-task,HU-01 T03 - Implementar alta mediante API y persistencia SQLite con validación en servidor.,"Tipo: Técnica.
 Responsabilidad propuesta: Eduardo Sanchez.
-Resultado esperado: Guardar el inventario en localStorage y avisar si la escritura falla.
+Resultado esperado: Implementar alta mediante API y persistencia SQLite con validación en servidor.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 1004,101,Sub-task,"HU-01 T04 - Probar altas válidas, duplicados, espacios en blanco y persistencia tras recargar.","Tipo: Técnica.
 Responsabilidad propuesta: Angel Eramerlis Ciprian.
@@ -165,26 +165,26 @@ Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
 Responsabilidad propuesta: Equipo completo.
 Resultado esperado: Revisar prevención de borrados accidentales.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
-105,1,Story,HU-05 - Iniciar sesión de demostración,"Como usuario del prototipo quiero iniciar sesión para acceder a las pantallas del inventario.
+105,1,Story,HU-05 - Iniciar sesión,"Como encargado quiero iniciar sesión con mi cuenta para acceder al inventario del laboratorio.
 
 Criterios de aceptación:
-1. Dadas las credenciales de demostración admin / 1234, cuando ingreso, entonces veo el inventario.
+1. Dada una cuenta creada en la configuración inicial, cuando ingreso las credenciales correctas, entonces accedo al inventario.
 2. Dadas credenciales incorrectas, cuando ingreso, entonces veo un error y no se muestra el inventario.
 3. Dada una sesión cerrada, cuando recargo, entonces se muestra el acceso.
-4. Dada una sesión activa en la pestaña, cuando recargo, entonces se conserva mientras sessionStorage esté disponible.
+4. Dada una sesión vigente, cuando recargo o vuelvo al servidor, entonces conservo el acceso hasta su cierre o vencimiento de ocho horas.
 
 Estimación orientativa: 5 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
-1033,105,Sub-task,HU-05 T01 - Definir acceso de demostración y alcance de sessionStorage.,"Tipo: Técnica.
+1033,105,Sub-task,"HU-05 T01 - Definir cuenta inicial, hash de contraseñas y sesión de ocho horas.","Tipo: Técnica.
 Responsabilidad propuesta: Hansel Hernandez.
-Resultado esperado: Definir acceso de demostración y alcance de sessionStorage.
+Resultado esperado: Definir cuenta inicial, hash de contraseñas y sesión de ocho horas.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
-1034,105,Sub-task,HU-05 T02 - Implementar validación local de credenciales y cierre de sesión.,"Tipo: Técnica.
+1034,105,Sub-task,"HU-05 T02 - Implementar acceso en servidor, cookie HttpOnly y cierre de sesión.","Tipo: Técnica.
 Responsabilidad propuesta: Gabriel Robles.
-Resultado esperado: Implementar validación local de credenciales y cierre de sesión.
+Resultado esperado: Implementar acceso en servidor, cookie HttpOnly y cierre de sesión.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
-1035,105,Sub-task,HU-05 T03 - Gestionar estado de sesión en la pestaña sin modificar el inventario guardado.,"Tipo: Técnica.
+1035,105,Sub-task,HU-05 T03 - Persistir sesiones en SQLite y proteger operaciones con token CSRF.,"Tipo: Técnica.
 Responsabilidad propuesta: Eduardo Sanchez.
-Resultado esperado: Gestionar estado de sesión en la pestaña sin modificar el inventario guardado.
+Resultado esperado: Persistir sesiones en SQLite y proteger operaciones con token CSRF.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 1036,105,Sub-task,"HU-05 T04 - Probar login válido, inválido, recarga y cierre de sesión.","Tipo: Técnica.
 Responsabilidad propuesta: Angel Eramerlis Ciprian.
@@ -194,9 +194,9 @@ Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 Responsabilidad propuesta: Lesli Esthefani De La Cruz.
 Resultado esperado: Validar etiquetas, mensaje de error y acceso con la tecla Enter.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
-1038,105,Sub-task,HU-05 T06 - Documentar credenciales y limitaciones del acceso local.,"Tipo: Funcional.
+1038,105,Sub-task,"HU-05 T06 - Documentar configuración inicial, acceso y alcance de la sesión.","Tipo: Funcional.
 Responsabilidad propuesta: Lesli Esthefani De La Cruz.
-Resultado esperado: Documentar credenciales y limitaciones del acceso local.
+Resultado esperado: Documentar configuración inicial, acceso y alcance de la sesión.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
 1039,105,Sub-task,HU-05 T07 - Ejecutar los criterios de HU-05 y verificar visibilidad de pantallas.,"Tipo: Funcional.
 Responsabilidad propuesta: Angel Eramerlis Ciprian.
@@ -212,7 +212,7 @@ Criterios de aceptación:
 1. Dado un equipo Disponible, cuando registro solicitante y fecha válida, entonces pasa a Prestado y muestra ambos datos.
 2. Dado un solicitante vacío o una fecha futura, cuando intento prestar, entonces se rechaza la operación.
 3. Dado un equipo en mantenimiento o prestado, cuando reviso sus acciones, entonces no permite un nuevo préstamo.
-4. Dado un equipo prestado, cuando registro la devolución, entonces vuelve a Disponible y se limpian los datos del préstamo actual.
+4. Dado un equipo prestado, cuando registro la devolución, entonces vuelve a Disponible y el préstamo pasa al historial.
 5. Dado un préstamo guardado, cuando recargo, entonces conserva estado, solicitante y fecha.
 
 Estimación orientativa: 8 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
@@ -224,9 +224,9 @@ Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 Responsabilidad propuesta: Gabriel Robles.
 Resultado esperado: Implementar diálogo de préstamo y acción de devolución.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
-1043,106,Sub-task,HU-06 T03 - Persistir fecha y solicitante en el registro del equipo.,"Tipo: Técnica.
+1043,106,Sub-task,HU-06 T03 - Persistir préstamos en SQLite y actualizar el estado dentro de una transacción.,"Tipo: Técnica.
 Responsabilidad propuesta: Eduardo Sanchez.
-Resultado esperado: Persistir fecha y solicitante en el registro del equipo.
+Resultado esperado: Persistir préstamos en SQLite y actualizar el estado dentro de una transacción.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 1044,106,Sub-task,"HU-06 T04 - Probar préstamo, fecha futura, espacios, devolución y persistencia.","Tipo: Técnica.
 Responsabilidad propuesta: Angel Eramerlis Ciprian.
@@ -236,9 +236,9 @@ Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
 Responsabilidad propuesta: Lesli Esthefani De La Cruz.
 Resultado esperado: Validar fecha visible en formato día mes año y acciones según estado.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
-1046,106,Sub-task,"HU-06 T06 - Documentar préstamo, devolución y ausencia de historial de préstamos.","Tipo: Funcional.
+1046,106,Sub-task,"HU-06 T06 - Documentar préstamos activos, devoluciones e historial conservado.","Tipo: Funcional.
 Responsabilidad propuesta: Lesli Esthefani De La Cruz.
-Resultado esperado: Documentar préstamo, devolución y ausencia de historial de préstamos.
+Resultado esperado: Documentar préstamos activos, devoluciones e historial conservado.
 Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
 1047,106,Sub-task,HU-06 T07 - Ejecutar los criterios de HU-06 y bloqueo de eliminación.,"Tipo: Funcional.
 Responsabilidad propuesta: Angel Eramerlis Ciprian.

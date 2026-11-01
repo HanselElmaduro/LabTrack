@@ -14,14 +14,14 @@ git switch -c mejora/KAN-26-editar-equipo
 
 ## Verificar y subir cambios
 
-1. Abre `01_Sistema/LabTrack.html` y prueba la funcionalidad modificada.
+1. Ejecuta `npm start`, abre `http://localhost:3000` y prueba la funcionalidad modificada.
 2. Ejecuta `npm test` si cambias la lógica del sistema.
 3. Revisa los archivos antes de agregarlos. No subas contraseñas reales, archivos `.env`, datos personales de usuarios del laboratorio ni grabaciones.
 4. Haz un commit que explique el cambio y súbelo a tu rama.
 
 ```bash
 git status
-git add 01_Sistema/LabTrack.html
+git add 01_Sistema/public/app.js
 git commit -m "KAN-26: describir el cambio realizado"
 git push -u origin mejora/KAN-26-editar-equipo
 ```
@@ -36,4 +36,4 @@ Los valores de Scrum Poker y las evidencias deben reflejar lo ocurrido. No vuelv
 
 ## Datos del navegador
 
-Cada integrante trabaja con su propio localStorage. Un `git pull` no descarga los equipos que otra persona haya registrado dentro de la aplicación. Utiliza datos ficticios durante las pruebas y las grabaciones.
+Cada instalación tiene su propia base SQLite en `01_Sistema/data/`. Un `git pull` no descarga los equipos que otra persona haya registrado. Para compartir datos deben conectarse al mismo servidor. No agregues bases de datos, sesiones ni contraseñas a Git. Utiliza datos ficticios durante las pruebas y las grabaciones.

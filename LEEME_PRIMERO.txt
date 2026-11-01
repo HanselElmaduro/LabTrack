@@ -1,23 +1,24 @@
-LABTRACK - EMPEZAR AQUI
+LABTRACK 2 - EMPEZAR AQUI
 
-1. Extrae todo el ZIP.
-2. Abre 01_Sistema/LabTrack.html. Usuario: admin. Contraseña: 1234.
-3. Revisa el documento de 02_Planificacion. Los nombres y matrículas están completos; confirmen los roles propuestos.
-4. Confirma fechas: el calendario del 2 al 13 de noviembre es una propuesta.
-5. El backlog YA está cargado en Jira. Abre los enlaces de 03_Evidencias. NO importes otra vez Backlog_Jira.csv: generarías duplicados. LabTrack Sprint 1 ya está preparado con las siete historias. Confirma fechas, alcance y cuentas reales de los responsables.
-6. Graba Scrum Poker con el equipo. Registra votos reales y actualiza los puntos en Jira.
-7. Ensaya y graba el incremento; demuestra el mismo sistema en vivo en clase.
-8. Completa 03_Evidencias/Enlaces_de_entrega.txt y organiza la carpeta en OneDrive.
-9. Verifica accesos y que los 7 integrantes entreguen individualmente.
-10. No modifiques la entrega después del cierre.
+1. Instala Node.js 24 o posterior.
+2. Extrae el proyecto completo y abre su carpeta en VS Code.
+3. En la terminal ejecuta npm start. No requiere npm install.
+4. Abre http://localhost:3000. La primera vez crea tu cuenta; no existe contraseña universal.
+5. En Windows puedes usar Iniciar_LabTrack.bat. Deja la terminal abierta mientras demuestras el sistema.
+6. Los doce equipos iniciales son ficticios. Los cambios se guardan en SQLite y permanecen al reiniciar.
+7. Lee docs/Guion_video_incremento.md antes de grabar el video de los siete integrantes.
+8. Revisa el plan Word/PDF: roles, fechas y estimaciones siguen pendientes de acuerdos reales.
+9. El backlog ya existe en Jira: no reimportes Backlog_Jira.csv.
+10. Graben Scrum Poker y la demostración funcional. Registren los puntos reales en Jira.
+11. Reúnan videos, documentos y enlaces en OneDrive y verifiquen todos los permisos.
+12. Los siete deben entregar individualmente y presentar el sistema funcionando en clase.
+13. No modificar la entrega después de su cierre.
 
-ESTADO REAL
-- Sistema local preparado; consultar Verificacion_del_sistema.txt para el alcance de las pruebas.
-- Backlog creado en Jira: 4 épicas, 7 historias y 56 subtareas.
-- Sprints y estimación en puntos de historia habilitados.
-- LabTrack Sprint 1 preparado, sin iniciar y con fechas pendientes.
-- Referencias_Jira.csv contiene las claves y enlaces reales.
-- Sin videos grabados ni votos reales.
-- Sin carpeta compartida en OneDrive, con Jira enlazado; faltan enlaces de videos, OneDrive e invitaciones.
-- Login local de demostración; datos en este navegador. No hay backend ni sincronización.
-- El respaldo JSON se descarga; no hay importador de restauración.
+VERSION ACTUAL
+- API Node.js y base de datos SQLite en 01_Sistema/data/, excluida de Git.
+- Acceso validado en servidor; cuenta inicial creada por ustedes.
+- CRUD, préstamos, historial, actividad y exportación CSV/JSON.
+- Sin importador del respaldo ni servidor publicado; cada instalación tiene sus datos.
+- npm test: pruebas de integración de la versión 2.
+- Falta recorrer manualmente las pantallas internas en un navegador antes de grabar.
+- La versión 1 queda en legacy solo como referencia.

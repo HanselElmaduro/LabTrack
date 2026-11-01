@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="LabTrack: inventario, préstamos y control de equipos de laboratorio.">
+  <title>LabTrack · Tu laboratorio, bajo control</title>
+  <link rel="icon" href="/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#content">Saltar al contenido</a>
+<section id="auth" class="auth-screen">
+  <div class="auth-story">
+    <a class="brand auth-brand" href="/"><img src="/logo.svg" alt="" width="44" height="44"><span>LabTrack<span class="brand-caption">GESTIÓN DE LABORATORIO</span></span></a>
+    <div class="auth-story-content"><span class="eyebrow">MENOS DESORDEN. MÁS POSIBILIDADES.</span><h1>Cada equipo,<br>bajo control<span>.</span></h1><p>Un espacio para organizar tu inventario, dar seguimiento a los préstamos y mantener tu laboratorio en movimiento.</p>
+    <div class="auth-illustration" aria-hidden="true"><div class="illustration-grid"></div><div class="mini-card mini-inventory"><span class="mini-icon">LT</span><div><b>Inventario organizado</b><small>Todo en su lugar.</small></div><span class="mini-check">✓</span></div><div class="device-monitor"><div class="monitor-screen"><span></span><i></i><i></i><i></i><i></i></div><div class="monitor-neck"></div><div class="monitor-foot"></div></div><div class="mini-card mini-loan"><span class="mini-dot"></span><div><b>Préstamos al día</b><small>Seguimiento de principio a fin.</small></div></div><div class="illustration-caption">UN LABORATORIO QUE FUNCIONA MEJOR</div></div>
+    <div class="auth-benefits"><span>✓ Inventario centralizado</span><span>✓ Historial de préstamos</span><span>✓ Datos persistentes</span></div></div>
+    <div class="auth-footer">Desarrollado para aprender. Diseñado para organizar.<span>ITLA · Programación III</span></div>
+  </div>
+  <div class="auth-form-side"><div class="auth-card"><span class="auth-kicker">BIENVENIDO A TU ESPACIO</span><h2 id="auth-title">Estamos preparando todo</h2><p id="auth-description" class="muted">Conectando con tu laboratorio…</p>
+    <form id="auth-form" hidden>
+      <div id="setup-name" hidden><label for="auth-name">Tu nombre</label><input id="auth-name" name="name" maxlength="80" autocomplete="name" placeholder="Ej. Hansel Hernández"></div>
+      <label for="auth-user">Usuario</label><input id="auth-user" name="username" required maxlength="32" autocomplete="username" placeholder="Tu nombre de usuario" autocapitalize="none" spellcheck="false">
+      <label for="auth-password">Contraseña</label><div class="password-field"><input id="auth-password" name="password" type="password" required maxlength="128" autocomplete="current-password" placeholder="Tu contraseña"><button type="button" class="icon-button" id="toggle-password" aria-label="Mostrar contraseña"></button></div>
+      <small id="password-help" class="field-help" hidden>Usa al menos 10 caracteres. Esta cuenta se crea en tu servidor.</small>
+      <p id="auth-error" class="form-error" role="alert"></p><button type="submit" id="auth-submit" class="button primary full-width">Entrar a LabTrack</button>
+    </form>
+    <button id="auth-retry" class="button secondary" hidden>Volver a conectar</button>
+    <div class="auth-note"><span id="auth-note-icon"></span><p>Tu trabajo se guarda en la base de datos del servidor. Puedes cerrar el navegador y continuar después.</p></div>
+  </div><p class="auth-bottom">Un laboratorio organizado empieza aquí.</p></div>
+</section>
+<div id="application" class="application" hidden>
+  <button id="nav-overlay" class="nav-overlay" aria-label="Cerrar navegación" hidden></button>
+  <aside id="sidebar" class="sidebar">
+    <a class="brand" href="#resumen"><img src="/logo.svg" alt="" width="40" height="40"><span>LabTrack<span class="brand-caption">TU LABORATORIO, CONECTADO</span></span></a>
+    <div class="workspace"><span class="workspace-icon" data-icon="building"></span><div><b>Mi laboratorio</b><small>Espacio de trabajo</small></div><span class="workspace-dot"></span></div>
+    <p class="nav-label">PRINCIPAL</p><nav aria-label="Navegación principal"><a href="#resumen" data-view="resumen"><span data-icon="dashboard"></span>Resumen</a><a href="#equipos" data-view="equipos"><span data-icon="box"></span>Equipos<span id="nav-total" class="nav-count">0</span></a><a href="#prestamos" data-view="prestamos"><span data-icon="arrows"></span>Préstamos<span id="nav-loans" class="nav-count" hidden>0</span></a><a href="#actividad" data-view="actividad"><span data-icon="clock"></span>Actividad</a></nav>
+    <div class="sidebar-bottom"><div class="sidebar-tip"><span data-icon="spark"></span><b>Todo empieza con orden.</b><p>Mantén tus equipos actualizados y registra cada devolución.</p></div><div class="sidebar-user"><div id="user-avatar" class="avatar">LT</div><div><b id="user-name"></b><small>Administrador del laboratorio</small></div><button id="logout" class="icon-button" aria-label="Cerrar sesión" title="Cerrar sesión"><span data-icon="logout"></span></button></div><div class="sidebar-credit">ITLA · Programación III</div></div>
+  </aside>
+  <div class="main-shell"><header class="topbar"><div class="topbar-left"><button id="toggle-nav" class="icon-button mobile-only" aria-label="Abrir navegación" aria-expanded="false"><span data-icon="menu"></span></button><span class="breadcrumb">Mi laboratorio<span>/</span><b id="breadcrumb-current">Resumen</b></span></div><div class="topbar-right"><span class="connection"><i></i> Sistema conectado</span><span id="today-label" class="today-label"></span><div class="avatar small" id="top-avatar">LT</div></div></header>
+    <main id="content" tabindex="-1"><div class="page-heading"><div><div class="eyebrow" id="page-eyebrow">UNA VISTA CLARA DE TU LABORATORIO</div><h1 id="page-title">Resumen general</h1><p id="page-description" class="muted">Equipos organizados, decisiones más sencillas.</p></div><div id="page-actions" class="page-actions"></div></div><div id="view-content" aria-live="polite"></div><footer class="page-footer"><span>LabTrack · Gestión de equipos de laboratorio</span><span id="updated-label"></span></footer></main>
+  </div>
+</div>
+<div id="toast-container" class="toast-container" aria-live="polite"></div>
+<dialog id="equipment-dialog" class="modal"><form id="equipment-form"><div class="modal-header"><div><span class="eyebrow">INVENTARIO</span><h2 id="equipment-title">Registrar equipo</h2></div><button type="button" class="icon-button" data-close="equipment-dialog" aria-label="Cerrar formulario"><span data-icon="x"></span></button></div><p class="modal-description">La información correcta hace más fácil encontrar cada equipo.</p>
+  <div class="form-grid"><div><label for="equipment-code">Código <span>*</span></label><input id="equipment-code" name="code" required maxlength="40" placeholder="Ej. EQ-013"></div><div><label for="equipment-category">Categoría <span>*</span></label><select id="equipment-category" name="category" required></select></div><div class="col-full"><label for="equipment-name">Nombre del equipo <span>*</span></label><input id="equipment-name" name="name" required maxlength="100" placeholder="Ej. Osciloscopio digital"></div><div><label for="equipment-brand">Marca / modelo</label><input id="equipment-brand" name="brand" maxlength="80" placeholder="Ej. Rigol DS1054Z"></div><div><label for="equipment-location">Ubicación <span>*</span></label><input id="equipment-location" name="location" required maxlength="100" placeholder="Ej. Laboratorio 01"></div><div class="col-full"><label for="equipment-status">Estado <span>*</span></label><select id="equipment-status" name="status"><option>Disponible</option><option>Mantenimiento</option><option value="Prestado" hidden>Prestado</option></select><small id="equipment-status-help" class="field-help" hidden>El estado se actualizará cuando registres la devolución.</small></div><div class="col-full"><label for="equipment-notes">Notas</label><textarea id="equipment-notes" name="notes" maxlength="500" rows="3" placeholder="Detalles útiles para el equipo…"></textarea></div></div>
+  <p id="equipment-error" class="form-error" role="alert"></p><div class="modal-footer"><span class="required-note">* Campos obligatorios</span><button type="button" class="button secondary" data-close="equipment-dialog">Cancelar</button><button type="submit" class="button primary" id="equipment-save">Guardar equipo</button></div>
+</form></dialog>
+<dialog id="loan-dialog" class="modal"><form id="loan-form"><div class="modal-header"><div><span class="eyebrow">CONTROL DE PRÉSTAMOS</span><h2>Registrar préstamo</h2></div><button type="button" class="icon-button" data-close="loan-dialog" aria-label="Cerrar préstamo"><span data-icon="x"></span></button></div><p class="modal-description">Registra quién recibe el equipo y cuándo esperas su devolución.</p>
+  <div class="form-grid"><div class="col-full"><label for="loan-equipment">Equipo disponible <span>*</span></label><select id="loan-equipment" name="equipmentId" required></select></div><div class="col-full"><label for="loan-borrower">Solicitante <span>*</span></label><input id="loan-borrower" name="borrower" required minlength="2" maxlength="100" placeholder="Nombre de quien recibe el equipo"></div><div class="col-full"><label for="loan-reference">Matrícula o referencia</label><input id="loan-reference" name="reference" maxlength="40" placeholder="Opcional"></div><div><label for="loan-date">Fecha de préstamo <span>*</span></label><input id="loan-date" name="loanDate" type="date" required></div><div><label for="loan-due">Devolución prevista</label><input id="loan-due" name="dueDate" type="date"></div></div><p id="loan-error" class="form-error" role="alert"></p><div class="modal-footer"><span class="required-note">* Campos obligatorios</span><button type="button" class="button secondary" data-close="loan-dialog">Cancelar</button><button type="submit" class="button primary" id="loan-save">Confirmar préstamo</button></div>
+</form></dialog>
+<dialog id="confirm-dialog" class="modal confirm-modal"><div class="confirm-icon" id="confirm-icon"></div><h2 id="confirm-title"></h2><p id="confirm-description" class="muted"></p><p id="confirm-error" class="form-error" role="alert"></p><div class="confirm-actions"><button class="button secondary" data-close="confirm-dialog">Cancelar</button><button class="button primary" id="confirm-accept">Confirmar</button></div></dialog>
+<dialog id="detail-dialog" class="modal"><div class="modal-header"><div><span class="eyebrow">FICHA DEL EQUIPO</span><h2 id="detail-title"></h2></div><button class="icon-button" data-close="detail-dialog" aria-label="Cerrar detalle"><span data-icon="x"></span></button></div><div id="detail-content"></div></dialog>
+</body></html>

@@ -18,3 +18,10 @@ Thumbs.db
 
 # Archivos temporales de Office
 ~$*
+
+# Datos de ejecución: no publicar usuarios, sesiones ni inventario real
+01_Sistema/data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.openai/
