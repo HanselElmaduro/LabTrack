@@ -5,6 +5,8 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createApp } from '../01_Sistema/server/index.js';
 import { today } from '../01_Sistema/server/database.js';
+import { ensureDemoAdmin } from '../01_Sistema/server/demo-admin.js';
+import { passwordRecord } from '../01_Sistema/server/auth.js';
 
 const credentials={name:'Administrador de prueba',username:'tester',password:'SoloPruebas-2026!'};
 const equipment=(extra={})=>({code:'TEST-001',name:'Osciloscopio de prueba',category:'Medición',location:'Laboratorio 01',status:'Disponible',brand:'Rigol',notes:'Datos ficticios',...extra});
@@ -133,7 +135,7 @@ test('Los archivos de datos y servidor no son públicos; CSP y recursos correcto
 
 test('Datos y sesiones persisten al reiniciar el servidor y no reaparecen ejemplos eliminados',async t=>{
   const folder=await mkdtemp(join(tmpdir(),'labtrack-test-'));t.after(()=>rm(folder,{recursive:true,force:true}));const databasePath=join(folder,'test.sqlite');
-  const app1=createApp({databasePath,seed:true});await new Promise(resolve=>app1.server.listen(0,'127.0.0.1',resolve));let base=`http://127.0.0.1:${app1.server.address().port}`;
+  const app1=createApp({databasePath,seed:true,demoAdmin:false});await new Promise(resolve=>app1.server.listen(0,'127.0.0.1',resolve));let base=`http://127.0.0.1:${app1.server.address().port}`;
   const setup=await fetch(base+'/api/setup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(credentials)});assert.equal(setup.status,201);const cookie=setup.headers.get('set-cookie').split(';')[0];
   app1.db.prepare('DELETE FROM equipment').run();await app1.close();
   const app2=createApp({databasePath,seed:true});await new Promise(resolve=>app2.server.listen(0,'127.0.0.1',resolve));t.after(()=>app2.close());base=`http://127.0.0.1:${app2.server.address().port}`;
@@ -146,3 +148,38 @@ test('El acceso bloquea intentos repetidos sin invalidar la sesión existente',a
   assert.equal((await f.request('/api/login','POST',credentials)).status,429);
   assert.equal((await f.request('/api/resumen')).status,200);
 });
+
+test('La instalación nueva permite admin / 1234 con sesión real y contraseña protegida',async t=>{
+  const f=await fixture(t,{seed:true});
+  assert.equal((await f.request('/api/session')).data.setupRequired,false);
+  const result=await f.request('/api/login','POST',{username:'admin',password:'1234'});
+  assert.equal(result.status,200);
+  assert.equal(result.data.user.username,'admin');
+  assert.equal((await f.request('/api/equipos')).data.total,12);
+  const user=f.app.db.prepare('SELECT * FROM users WHERE username=?').get('admin');
+  assert.notEqual(user.password_hash,'1234');assert.equal(user.password_hash.length,128);
+  assert.equal((await f.request('/api/setup','POST',credentials)).status,409);
+});
+
+test('El comando demo conserva datos y cuentas, invalida sesiones de admin y no se repite al iniciar',async t=>{
+  const f=await fixture(t);await f.setup();
+  const item=(await f.request('/api/equipos','POST',equipment())).data.item;
+  const loan=(await f.request('/api/prestamos','POST',{equipmentId:item.id,borrower:'Prueba Demo',loanDate:today()})).data.item;
+  assert.equal(ensureDemoAdmin(f.app.db),false);
+  assert.equal(f.app.db.prepare("SELECT COUNT(*) AS count FROM users WHERE username='admin'").get().count,0);
+  ensureDemoAdmin(f.app.db,{reset:true});
+  assert.equal(f.app.db.prepare('SELECT COUNT(*) AS count FROM users').get().count,2);
+  assert.equal((await f.request('/api/login','POST',{username:'admin',password:'1234'})).status,200);
+  const token=f.cookie();
+  const updated=await passwordRecord('UnaClaveDiferente2026');
+  f.app.db.prepare("UPDATE users SET salt=?,password_hash=? WHERE username='admin'").run(updated.salt,updated.hash);
+  assert.equal(ensureDemoAdmin(f.app.db),false);
+  assert.equal((await f.request('/api/login','POST',{username:'admin',password:'UnaClaveDiferente2026'})).status,200);
+  ensureDemoAdmin(f.app.db,{reset:true});
+  assert.equal((await f.request('/api/resumen','GET',undefined,{Cookie:token})).status,401);
+  assert.equal((await f.request('/api/login','POST',{username:'admin',password:'1234'})).status,200);
+  assert.equal((await f.request('/api/equipos/'+item.id)).data.item.status,'Prestado');
+  assert.equal((await f.request('/api/prestamos')).data.items[0].id,loan.id);
+  assert.equal((await f.request('/api/login','POST',credentials)).status,200);
+});
+

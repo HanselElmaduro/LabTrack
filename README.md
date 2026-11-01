@@ -16,7 +16,20 @@ npm start
 
 Si ya habías clonado el repositorio, ejecuta `git pull --ff-only` en su carpeta antes de iniciarlo.
 
-Abre **http://localhost:3000**. La primera vez, crea tu cuenta administradora con nombre, usuario y contraseña de al menos diez caracteres. No hay credenciales universales. Después inicia sesión con esa cuenta. La sesión vence a las ocho horas o cuando la cierras.
+Abre **http://localhost:3000** e inicia sesión con las credenciales de demostración local:
+
+- **Usuario:** `admin`
+- **Contraseña:** `1234`
+
+En una instalación nueva, esta cuenta se prepara automáticamente. Si ya utilizabas LabTrack, detén el servidor con `Ctrl+C` y ejecuta:
+
+```bash
+git pull --ff-only
+npm run demo:admin
+npm start
+```
+
+El comando prepara o restablece únicamente el acceso de `admin`; conserva equipos, préstamos y las demás cuentas. Invalida las sesiones anteriores de ese administrador. La contraseña se almacena como hash scrypt. La sesión vence a las ocho horas o cuando la cierras. Estas credenciales están destinadas a la demostración local.
 
 En Windows también puedes abrir **Iniciar_LabTrack.bat**. Mantén la terminal abierta durante el uso y la presentación. Pulsa `Ctrl+C` para detener el servidor. Una vez instalado Node y descargado el proyecto, la demostración local no necesita Internet.
 
@@ -52,7 +65,7 @@ El inventario inicial incluye doce equipos ficticios para prácticas; se pueden 
 npm test
 ```
 
-Ejecuta 13 pruebas de integración con HTTP real y SQLite temporal: autenticación, CRUD, validaciones, conflictos de edición, préstamos, exportaciones, seguridad de rutas y persistencia tras reiniciar. Las pruebas no utilizan ni eliminan el inventario de la aplicación.
+Ejecuta 15 pruebas de integración con HTTP real y SQLite temporal: autenticación, CRUD, validaciones, conflictos de edición, préstamos, exportaciones, seguridad de rutas y persistencia tras reiniciar. Las pruebas no utilizan ni eliminan el inventario de la aplicación.
 
 La interfaz de acceso se revisó visualmente. La validación manual de las pantallas internas y del recorrido completo en navegador sigue pendiente; los detalles están en `03_Evidencias/Verificacion_del_sistema.txt`. El grupo debe ensayar el guion antes de grabar.
 
@@ -73,3 +86,4 @@ Trabaja en una rama por cambio y usa la clave de Jira en los commits; consulta [
 - Plan de sprint en Word y PDF en `02_Planificacion/`; conserva fechas propuestas y puntos pendientes.
 
 La entrega académica requiere los dos videos en OneDrive, acceso a Jira, demostración en vivo y entrega individual de los siete integrantes. GitHub es el espacio de trabajo y se enlaza desde la carpeta de OneDrive. No modificar los entregables después del cierre.
+

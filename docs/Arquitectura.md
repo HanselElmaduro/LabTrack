@@ -24,7 +24,7 @@ Un equipo solo puede tener un préstamo activo. Prestar y devolver actualiza equ
 | Método | Ruta | Resultado |
 | --- | --- | --- |
 | GET | `/api/session` | Estado de acceso y configuración inicial |
-| POST | `/api/setup` | Crea la primera cuenta; se deshabilita al existir un usuario |
+| POST | `/api/setup` | Configuración alternativa; se deshabilita al existir un usuario |
 | POST | `/api/login`, `/api/logout` | Acceso y cierre de sesión |
 | GET | `/api/catalogos`, `/api/resumen` | Categorías, fecha y panel global |
 | GET, POST | `/api/equipos` | Consulta paginada o alta |
@@ -39,10 +39,11 @@ Las operaciones del inventario requieren una sesión. Las mutaciones autenticada
 
 ## Alcance operativo
 
-La ejecución predeterminada es local en `127.0.0.1:3000`. Cada instalación tiene su propia base de datos. GitHub sincroniza código, no los equipos registrados. Para compartir datos, los navegadores deben conectarse al mismo servidor. No se ha publicado un servidor compartido ni se incluye recuperación de contraseña o importación del respaldo. La primera cuenta es administradora; la aplicación no ofrece gestión de múltiples cuentas desde la interfaz.
+La ejecución predeterminada es local en `127.0.0.1:3000`. Cada instalación tiene su propia base de datos. GitHub sincroniza código, no los equipos registrados. Para compartir datos, los navegadores deben conectarse al mismo servidor. No se ha publicado un servidor compartido ni se incluye recuperación de contraseña o importación del respaldo. En una instalación nueva se prepara la cuenta de demostración admin / 1234. Si ya existen cuentas, el inicio no las modifica; npm run demo:admin prepara o restablece esa cuenta explícitamente y conserva el inventario y las demás cuentas. No se ofrece gestión de múltiples cuentas desde la interfaz.
 
 La base está en `01_Sistema/data/labtrack.sqlite` y no se publica en GitHub. Para copiarla como respaldo completo, detener el servidor antes de copiar toda la carpeta `data`. Las exportaciones JSON no incluyen usuarios ni sesiones. Si se configura un despliegue HTTPS en el futuro, debe habilitarse `LABTRACK_SECURE_COOKIE=1` y revisarse su configuración operativa.
 
 ## Relación con el sprint
 
 Se conservan las siete historias. HU-05 ahora describe una sesión validada por servidor. Las tareas técnicas de persistencia se actualizan a API y SQLite. El equipo debe volver a estimar este alcance en Scrum Poker; no se reutilizan valores orientativos como si fueran votos reales.
+

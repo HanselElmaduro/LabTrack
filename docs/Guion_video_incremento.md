@@ -4,7 +4,7 @@ Versión 2 de LabTrack. Cada integrante presenta una parte. Pedro abre, Lesli ci
 
 ## Preparación
 
-Instalar Node.js 24, ejecutar `npm start` y abrir `http://localhost:3000`. Crear la cuenta administradora antes de grabar, anotar las credenciales en privado y ensayar el recorrido. El inventario inicial contiene doce equipos ficticios. Usar un código nuevo, como `DEMO-001`, y la fecha real del día. No grabar la contraseña al escribirla ni mostrar la base de datos con hashes o sesiones.
+Instalar Node.js 24, ejecutar `npm start` y abrir `http://localhost:3000`. Preparar el acceso de demostración admin / 1234 antes de grabar; en una instalación existente ejecutar npm run demo:admin con el servidor detenido. Ensayar el recorrido. El inventario inicial contiene doce equipos ficticios. Usar un código nuevo, como `DEMO-001`, y la fecha real del día. No grabar la contraseña al escribirla ni mostrar la base de datos con hashes o sesiones.
 
 ## Pedro Julio López Mancebo
 
@@ -81,3 +81,4 @@ Mostrar la exportación CSV desde Equipos. Si se desea, abrir una ficha de otro 
 ## Antes de finalizar
 
 Comprobar que se ve cada resultado y que se escuchan los siete integrantes. Relacionar la demostración con las historias de Jira. Guardar el video en OneDrive y verificar sus permisos. El video no sustituye la demostración en vivo.
+

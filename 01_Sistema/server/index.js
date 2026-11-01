@@ -5,6 +5,7 @@ import { resolve, dirname } from 'node:path';
 import { openDatabase, CATEGORIES, today, transaction, logActivity } from './database.js';
 import { createSession, getSession, destroySession, publicUser, passwordRecord, verifyPassword, validCsrf } from './auth.js';
 import { HttpError, text, equipmentInput, loanInput, checkVersion } from './validation.js';
+import { ensureDemoAdmin } from './demo-admin.js';
 
 const here=dirname(fileURLToPath(import.meta.url));
 const assets = new Map([['/',['index.html','text/html; charset=utf-8']],['/styles.css',['styles.css','text/css; charset=utf-8']],['/app.js',['app.js','text/javascript; charset=utf-8']],['/logo.svg',['logo.svg','image/svg+xml']]]);
@@ -19,8 +20,9 @@ async function bodyOf(req) {
 const equipmentSelect=`SELECT e.*,l.id AS loan_id,l.borrower,l.reference,l.loan_date,l.due_date FROM equipment e LEFT JOIN loans l ON l.equipment_id=e.id AND l.returned_at IS NULL`;
 const normalize=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 
-export function createApp({databasePath=resolve(here,'../data/labtrack.sqlite'),seed=true,secureCookies=false}={}) {
+export function createApp({databasePath=resolve(here,'../data/labtrack.sqlite'),seed=true,demoAdmin=seed,secureCookies=false}={}) {
   const db=openDatabase(databasePath,{seed}), attempts=new Map();
+  if (demoAdmin) ensureDemoAdmin(db);
   const getEquipment=id=>{const item=db.prepare(equipmentSelect+' WHERE e.id=?').get(id);if(!item)throw new HttpError(404,'No se encontró el equipo.');return item;};
   const rateKey=req=>req.socket.remoteAddress||'local';
   const server=createServer(async(req,res)=>{
@@ -160,6 +162,7 @@ if(process.argv[1] && resolve(process.argv[1])===fileURLToPath(import.meta.url))
   const host=process.env.HOST||(process.argv.includes('--host')?'0.0.0.0':'127.0.0.1');
   const portArg=process.argv.indexOf('--port');
   const port=Number(process.env.PORT || (portArg>=0?process.argv[portArg+1]:3000));
-  app.server.listen(port,host,()=>console.log(`LabTrack: http://${host==='0.0.0.0'?'localhost':host}:${port}\nBase de datos SQLite preparada. Abre la aplicación para crear tu cuenta inicial.`));
+  app.server.listen(port,host,()=>console.log(`LabTrack: http://${host==='0.0.0.0'?'localhost':host}:${port}\nBase de datos SQLite preparada. Demo local: admin / 1234. En instalaciones existentes, habilita ese acceso con npm run demo:admin.`));
   for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>app.close().then(()=>process.exit(0)));
 }
+

@@ -89,3 +89,4 @@ Pedro muestra el total real de puntos. Cada uno de los siete comenta su disponib
 Lesli cierra:
 
 “Acordamos incluir [historias seleccionadas] con el objetivo de [objetivo]. El sprint comienza el [fecha] y termina el [fecha]. Las Daily están programadas para [fechas y hora], antes del Sprint Review del [fecha y hora]. Las estimaciones y la planificación quedaron registradas en Jira. Gracias.”
+

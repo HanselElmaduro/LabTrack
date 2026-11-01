@@ -1,6 +1,6 @@
 VERIFICACIÓN DE LABTRACK 2
 
-Resultado: 13 pruebas de integración aprobadas, 0 fallidas.
+Resultado: 15 pruebas de integración aprobadas, 0 fallidas.
 Comando: npm test. Entorno: Node.js 24.22.1 y SQLite.
 Método: servidor HTTP real en puerto temporal, solicitudes HTTP y bases SQLite aisladas.
 Las pruebas no utilizan los datos reales de la aplicación.
@@ -25,3 +25,6 @@ El formulario seguro de la vista previa no permitió automatizar el acceso a las
 No se ha validado en navegador todo el CRUD, las descargas, el diseño móvil ni los diálogos.
 El equipo debe completar el recorrido manual del guion antes de grabar y presentar.
 Las 27 comprobaciones del primer prototipo son históricas y no validan la versión 2.
+
+14. Instalación nueva: admin / 1234, sesión real y contraseña protegida en SQLite.
+15. Restablecimiento explícito: conservación del inventario y otras cuentas, invalidación de sesiones de admin y ausencia de cambios automáticos al iniciar.

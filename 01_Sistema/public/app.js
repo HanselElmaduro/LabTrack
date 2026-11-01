@@ -52,7 +52,7 @@ async function boot(){
   try {
     const data=await api('/api/session');state.setup=data.setupRequired;state.user=data.user;state.csrf=data.csrfToken;
     $('auth').hidden=Boolean(state.user);$('application').hidden=!state.user;$('auth-retry').hidden=true;
-    if(!state.user){$('auth-title').textContent=state.setup?'Prepara tu laboratorio':'Qué bueno verte de nuevo';$('auth-description').textContent=state.setup?'Crea tu cuenta de administrador para empezar a organizar tus equipos.':'Inicia sesión y continúa donde lo dejaste.';$('setup-name').hidden=!state.setup;$('auth-name').required=state.setup;$('password-help').hidden=!state.setup;$('auth-password').minLength=state.setup?10:1;$('auth-password').autocomplete=state.setup?'new-password':'current-password';$('auth-submit').textContent=state.setup?'Crear cuenta y entrar':'Entrar a LabTrack';$('auth-form').hidden=false;$('auth-error').textContent='';return;}
+    if(!state.user){$('auth-title').textContent=state.setup?'Prepara tu laboratorio':'Qué bueno verte de nuevo';$('auth-description').textContent=state.setup?'Crea tu cuenta de administrador para empezar a organizar tus equipos.':'Demostración local: admin / 1234. También puedes usar tu cuenta existente.';$('setup-name').hidden=!state.setup;$('auth-name').required=state.setup;$('password-help').hidden=!state.setup;$('auth-password').minLength=state.setup?10:1;$('auth-password').autocomplete=state.setup?'new-password':'current-password';$('auth-submit').textContent=state.setup?'Crear cuenta y entrar':'Entrar a LabTrack';$('auth-form').hidden=false;$('auth-error').textContent='';return;}
     const catalog=await api('/api/catalogos');state.categories=catalog.categories;state.today=catalog.today;
     $('user-name').textContent=state.user.name;$('user-avatar').textContent=$('top-avatar').textContent=initials(state.user.name);
     $('today-label').textContent=new Intl.DateTimeFormat('es-DO',{day:'numeric',month:'long',year:'numeric',timeZone:'America/Santo_Domingo'}).format(new Date());
@@ -160,3 +160,4 @@ let debounce;
 document.addEventListener('input',event=>{const mapping={'equipment-search':'q','loan-search':'loanQ','activity-search':'activityQ'},key=mapping[event.target.id];if(key){state[key]=event.target.value;state.page=1;clearTimeout(debounce);debounce=setTimeout(()=>loadView({preserveFocus:true}),280);}});
 document.addEventListener('change',async event=>{const mapping={'status-filter':'status','category-filter':'category','activity-filter':'activityType'},key=mapping[event.target.id];if(key){state[key]=event.target.value;state.page=1;await loadView();}});
 window.addEventListener('hashchange',route);fillIcons();boot();
+

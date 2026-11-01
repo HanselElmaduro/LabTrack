@@ -3,7 +3,7 @@ LABTRACK 2 - EMPEZAR AQUI
 1. Instala Node.js 24 o posterior.
 2. Extrae el proyecto completo y abre su carpeta en VS Code.
 3. En la terminal ejecuta npm start. No requiere npm install.
-4. Abre http://localhost:3000. La primera vez crea tu cuenta; no existe contraseña universal.
+4. Abre http://localhost:3000. Usuario de demostración: admin. Contraseña: 1234. Si ya habías creado una cuenta, detén el servidor y ejecuta npm run demo:admin antes de npm start. Conserva el inventario.
 5. En Windows puedes usar Iniciar_LabTrack.bat. Deja la terminal abierta mientras demuestras el sistema.
 6. Los doce equipos iniciales son ficticios. Los cambios se guardan en SQLite y permanecen al reiniciar.
 7. Lee docs/Guion_video_incremento.md antes de grabar el video de los siete integrantes.
@@ -16,9 +16,10 @@ LABTRACK 2 - EMPEZAR AQUI
 
 VERSION ACTUAL
 - API Node.js y base de datos SQLite en 01_Sistema/data/, excluida de Git.
-- Acceso validado en servidor; cuenta inicial creada por ustedes.
+- Acceso validado en servidor; demo local admin / 1234 con hash scrypt en SQLite.
 - CRUD, préstamos, historial, actividad y exportación CSV/JSON.
 - Sin importador del respaldo ni servidor publicado; cada instalación tiene sus datos.
 - npm test: pruebas de integración de la versión 2.
 - Falta recorrer manualmente las pantallas internas en un navegador antes de grabar.
 - La versión 1 queda en legacy solo como referencia.
+
