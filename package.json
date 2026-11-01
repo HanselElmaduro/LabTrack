@@ -1,0 +1,12 @@
+{
+  "name": "labtrack",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Inventario local de laboratorio para Scrum Poker y Sprint Planning del ITLA",
+  "scripts": {
+    "test": "node 04_Pruebas/test_labtrack.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

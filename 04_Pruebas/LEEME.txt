@@ -1,0 +1,10 @@
+PRUEBAS DE LÓGICA
+
+Requieren Node.js con Blob disponible. No requieren paquetes adicionales.
+Desde la carpeta principal del paquete ejecutar:
+
+node 04_Pruebas/test_labtrack.cjs
+
+Las pruebas simulan DOM y almacenamiento. No sustituyen el ensayo en navegador.
+El informe se escribe en 03_Evidencias/Verificacion_del_sistema.txt.
+No ejecutar ni modificar entregables después del cierre de la tarea.

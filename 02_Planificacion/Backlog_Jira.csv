@@ -1,0 +1,291 @@
+﻿Work item ID,Parent,Work type,Summary,Description,Status,Story Points,Labels
+1,,Epic,E1 - Acceso de demostración,Flujo local de entrada y salida del prototipo.,To Do,,labtrack
+2,,Epic,E2 - Gestión de equipos,"Inventario con altas, consultas, cambios y bajas.",To Do,,labtrack
+3,,Epic,E3 - Préstamos de equipos,"Solicitante, fecha de préstamo y devolución.",To Do,,labtrack
+4,,Epic,E4 - Panel del inventario,Resumen global de equipos según estado.,To Do,,labtrack
+101,2,Story,HU-01 - Registrar equipo,"Como encargado de laboratorio quiero registrar un equipo para mantener el inventario actualizado.
+
+Criterios de aceptación:
+1. Dado un formulario válido, cuando guardo nombre, categoría, código, estado y ubicación, entonces el equipo aparece en la lista.
+2. Dado un código existente, cuando intento registrarlo con otra combinación de mayúsculas, entonces se rechaza el duplicado.
+3. Dados campos vacíos o con solo espacios, cuando guardo, entonces se solicita completarlos.
+
+Estimación orientativa: 3 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1001,101,Sub-task,HU-01 T01 - Definir los campos del equipo y las reglas de código único y campos obligatorios.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir los campos del equipo y las reglas de código único y campos obligatorios.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1002,101,Sub-task,HU-01 T02 - Implementar formulario y alta de equipos con identificador único.,"Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar formulario y alta de equipos con identificador único.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1003,101,Sub-task,HU-01 T03 - Guardar el inventario en localStorage y avisar si la escritura falla.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Guardar el inventario en localStorage y avisar si la escritura falla.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1004,101,Sub-task,"HU-01 T04 - Probar altas válidas, duplicados, espacios en blanco y persistencia tras recargar.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar altas válidas, duplicados, espacios en blanco y persistencia tras recargar.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1005,101,Sub-task,"HU-01 T05 - Validar etiquetas, mensajes y facilidad de uso del formulario.","Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar etiquetas, mensajes y facilidad de uso del formulario.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1006,101,Sub-task,HU-01 T06 - Documentar los pasos para registrar un equipo en el manual.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar los pasos para registrar un equipo en el manual.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1007,101,Sub-task,HU-01 T07 - Ejecutar los criterios de aceptación de HU-01 y guardar evidencia.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de aceptación de HU-01 y guardar evidencia.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1008,101,Sub-task,HU-01 T08 - Revisar en equipo el alta y acordar ajustes necesarios.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar en equipo el alta y acordar ajustes necesarios.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+102,2,Story,HU-02 - Listar y buscar equipos,"Como encargado quiero consultar y buscar equipos para encontrarlos rápidamente.
+
+Criterios de aceptación:
+1. Dado un inventario, cuando abro el sistema, entonces veo código, nombre, categoría, ubicación, estado y préstamo actual.
+2. Dada una búsqueda por nombre o código y un filtro de estado, cuando los aplico, entonces se muestran los equipos coincidentes.
+3. Dada una búsqueda sin coincidencias, cuando consulto, entonces veo un mensaje de lista vacía.
+
+Estimación orientativa: 5 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1009,102,Sub-task,HU-02 T01 - Definir columnas y reglas para combinar búsqueda y filtro.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir columnas y reglas para combinar búsqueda y filtro.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1010,102,Sub-task,"HU-02 T02 - Implementar tabla, búsqueda sin distinguir mayúsculas y filtro por estado.","Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar tabla, búsqueda sin distinguir mayúsculas y filtro por estado.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1011,102,Sub-task,HU-02 T03 - Leer el inventario persistido y reflejar los cambios del CRUD en la tabla.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Leer el inventario persistido y reflejar los cambios del CRUD en la tabla.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1012,102,Sub-task,"HU-02 T04 - Probar búsquedas, filtros combinados, inventario vacío y contenido con caracteres especiales.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar búsquedas, filtros combinados, inventario vacío y contenido con caracteres especiales.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1013,102,Sub-task,HU-02 T05 - Validar legibilidad de tabla y desplazamiento en pantallas pequeñas.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar legibilidad de tabla y desplazamiento en pantallas pequeñas.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1014,102,Sub-task,HU-02 T06 - Documentar búsqueda por nombre o código y uso de filtros.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar búsqueda por nombre o código y uso de filtros.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1015,102,Sub-task,HU-02 T07 - Ejecutar los criterios de HU-02 con datos de prueba.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de HU-02 con datos de prueba.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1016,102,Sub-task,HU-02 T08 - Revisar los resultados y los mensajes de ausencia de coincidencias.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar los resultados y los mensajes de ausencia de coincidencias.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+103,2,Story,HU-03 - Editar equipo,"Como encargado quiero modificar los datos de un equipo para corregir su información.
+
+Criterios de aceptación:
+1. Dado un equipo, cuando pulso Editar, entonces el formulario muestra sus datos actuales.
+2. Dados cambios válidos, cuando guardo y recargo, entonces se conservan los nuevos valores.
+3. Dado un código duplicado o un campo obligatorio vacío, cuando guardo, entonces el cambio se rechaza.
+4. Dado un equipo prestado, cuando edito sus datos, entonces conserva solicitante, fecha y estado Prestado.
+
+Estimación orientativa: 3 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1017,103,Sub-task,HU-03 T01 - Definir campos editables y conservación del préstamo activo.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir campos editables y conservación del préstamo activo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1018,103,Sub-task,HU-03 T02 - Implementar precarga del formulario y actualización por identificador.,"Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar precarga del formulario y actualización por identificador.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1019,103,Sub-task,HU-03 T03 - Persistir los cambios sin crear registros duplicados.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Persistir los cambios sin crear registros duplicados.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1020,103,Sub-task,"HU-03 T04 - Probar edición válida, códigos duplicados y conservación del préstamo.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar edición válida, códigos duplicados y conservación del préstamo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1021,103,Sub-task,HU-03 T05 - Validar que el estado esté bloqueado durante un préstamo activo.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar que el estado esté bloqueado durante un préstamo activo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1022,103,Sub-task,HU-03 T06 - Documentar edición y cancelación de cambios.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar edición y cancelación de cambios.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1023,103,Sub-task,HU-03 T07 - Ejecutar los criterios de HU-03 y verificar la recarga.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de HU-03 y verificar la recarga.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1024,103,Sub-task,HU-03 T08 - Revisar claridad del formulario y consistencia de datos.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar claridad del formulario y consistencia de datos.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+104,2,Story,HU-04 - Eliminar equipo,"Como encargado quiero eliminar equipos dados de baja para mantener limpio el inventario.
+
+Criterios de aceptación:
+1. Dado un equipo sin préstamo, cuando pulso Eliminar, entonces se pide confirmación.
+2. Dada una confirmación, cuando acepto, entonces desaparece el equipo y la eliminación persiste tras recargar.
+3. Dada una cancelación, cuando cancelo, entonces el equipo se conserva.
+4. Dado un equipo prestado, cuando intento eliminarlo, entonces se bloquea la operación.
+
+Estimación orientativa: 2 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1025,104,Sub-task,HU-04 T01 - Definir confirmación y bloqueo de eliminación por préstamo activo.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir confirmación y bloqueo de eliminación por préstamo activo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1026,104,Sub-task,HU-04 T02 - Implementar eliminación por identificador y mensaje de bloqueo.,"Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar eliminación por identificador y mensaje de bloqueo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1027,104,Sub-task,HU-04 T03 - Guardar la lista resultante manteniendo los demás equipos.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Guardar la lista resultante manteniendo los demás equipos.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1028,104,Sub-task,"HU-04 T04 - Probar confirmar, cancelar, eliminar todos y bloquear un equipo prestado.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar confirmar, cancelar, eliminar todos y bloquear un equipo prestado.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1029,104,Sub-task,HU-04 T05 - Validar que la confirmación identifique el equipo que se eliminará.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar que la confirmación identifique el equipo que se eliminará.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1030,104,Sub-task,HU-04 T06 - Documentar eliminación y tratamiento de equipos prestados.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar eliminación y tratamiento de equipos prestados.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1031,104,Sub-task,HU-04 T07 - Ejecutar los criterios de HU-04 sin afectar otros registros.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de HU-04 sin afectar otros registros.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1032,104,Sub-task,HU-04 T08 - Revisar prevención de borrados accidentales.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar prevención de borrados accidentales.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+105,1,Story,HU-05 - Iniciar sesión de demostración,"Como usuario del prototipo quiero iniciar sesión para acceder a las pantallas del inventario.
+
+Criterios de aceptación:
+1. Dadas las credenciales de demostración admin / 1234, cuando ingreso, entonces veo el inventario.
+2. Dadas credenciales incorrectas, cuando ingreso, entonces veo un error y no se muestra el inventario.
+3. Dada una sesión cerrada, cuando recargo, entonces se muestra el acceso.
+4. Dada una sesión activa en la pestaña, cuando recargo, entonces se conserva mientras sessionStorage esté disponible.
+
+Estimación orientativa: 5 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1033,105,Sub-task,HU-05 T01 - Definir acceso de demostración y alcance de sessionStorage.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir acceso de demostración y alcance de sessionStorage.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1034,105,Sub-task,HU-05 T02 - Implementar validación local de credenciales y cierre de sesión.,"Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar validación local de credenciales y cierre de sesión.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1035,105,Sub-task,HU-05 T03 - Gestionar estado de sesión en la pestaña sin modificar el inventario guardado.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Gestionar estado de sesión en la pestaña sin modificar el inventario guardado.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1036,105,Sub-task,"HU-05 T04 - Probar login válido, inválido, recarga y cierre de sesión.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar login válido, inválido, recarga y cierre de sesión.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1037,105,Sub-task,"HU-05 T05 - Validar etiquetas, mensaje de error y acceso con la tecla Enter.","Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar etiquetas, mensaje de error y acceso con la tecla Enter.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1038,105,Sub-task,HU-05 T06 - Documentar credenciales y limitaciones del acceso local.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar credenciales y limitaciones del acceso local.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1039,105,Sub-task,HU-05 T07 - Ejecutar los criterios de HU-05 y verificar visibilidad de pantallas.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de HU-05 y verificar visibilidad de pantallas.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1040,105,Sub-task,HU-05 T08 - Revisar el flujo de entrada y salida con el equipo.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar el flujo de entrada y salida con el equipo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+106,3,Story,HU-06 - Registrar préstamo y devolución,"Como encargado quiero registrar quién recibe un equipo y cuándo para controlar su préstamo y devolución.
+
+Criterios de aceptación:
+1. Dado un equipo Disponible, cuando registro solicitante y fecha válida, entonces pasa a Prestado y muestra ambos datos.
+2. Dado un solicitante vacío o una fecha futura, cuando intento prestar, entonces se rechaza la operación.
+3. Dado un equipo en mantenimiento o prestado, cuando reviso sus acciones, entonces no permite un nuevo préstamo.
+4. Dado un equipo prestado, cuando registro la devolución, entonces vuelve a Disponible y se limpian los datos del préstamo actual.
+5. Dado un préstamo guardado, cuando recargo, entonces conserva estado, solicitante y fecha.
+
+Estimación orientativa: 8 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1041,106,Sub-task,HU-06 T01 - Definir transiciones de estado y reglas de solicitante y fecha.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir transiciones de estado y reglas de solicitante y fecha.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1042,106,Sub-task,HU-06 T02 - Implementar diálogo de préstamo y acción de devolución.,"Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar diálogo de préstamo y acción de devolución.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1043,106,Sub-task,HU-06 T03 - Persistir fecha y solicitante en el registro del equipo.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Persistir fecha y solicitante en el registro del equipo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1044,106,Sub-task,"HU-06 T04 - Probar préstamo, fecha futura, espacios, devolución y persistencia.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar préstamo, fecha futura, espacios, devolución y persistencia.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1045,106,Sub-task,HU-06 T05 - Validar fecha visible en formato día mes año y acciones según estado.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar fecha visible en formato día mes año y acciones según estado.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1046,106,Sub-task,"HU-06 T06 - Documentar préstamo, devolución y ausencia de historial de préstamos.","Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar préstamo, devolución y ausencia de historial de préstamos.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1047,106,Sub-task,HU-06 T07 - Ejecutar los criterios de HU-06 y bloqueo de eliminación.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de HU-06 y bloqueo de eliminación.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1048,106,Sub-task,HU-06 T08 - Revisar con el equipo que el flujo represente un préstamo completo.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar con el equipo que el flujo represente un préstamo completo.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+107,4,Story,HU-07 - Consultar panel de resumen,"Como encargado quiero ver las cantidades por estado para conocer la situación del inventario.
+
+Criterios de aceptación:
+1. Dado un inventario, cuando accedo, entonces veo total, disponibles, prestados y mantenimiento.
+2. Dada una creación, edición, eliminación, préstamo o devolución, cuando se guarda, entonces los contadores se actualizan.
+3. Dado un inventario vacío, cuando consulto, entonces todos los contadores muestran cero.
+4. Dado un filtro de tabla, cuando lo aplico, entonces el panel sigue mostrando el inventario completo.
+
+Estimación orientativa: 3 puntos. Puntos finales pendientes de Scrum Poker; no registrar consenso sin votación real.",To Do,,labtrack
+1049,107,Sub-task,HU-07 T01 - Definir conteos globales y consistencia entre categorías de estado.,"Tipo: Técnica.
+Responsabilidad propuesta: Hansel Hernandez.
+Resultado esperado: Definir conteos globales y consistencia entre categorías de estado.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1050,107,Sub-task,HU-07 T02 - Implementar tarjetas y actualización al cambiar inventario.,"Tipo: Técnica.
+Responsabilidad propuesta: Gabriel Robles.
+Resultado esperado: Implementar tarjetas y actualización al cambiar inventario.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1051,107,Sub-task,HU-07 T03 - Calcular totales desde los registros existentes sin duplicar almacenamiento.,"Tipo: Técnica.
+Responsabilidad propuesta: Eduardo Sanchez.
+Resultado esperado: Calcular totales desde los registros existentes sin duplicar almacenamiento.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1052,107,Sub-task,"HU-07 T04 - Probar contadores después del CRUD, préstamo, devolución y lista vacía.","Tipo: Técnica.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Probar contadores después del CRUD, préstamo, devolución y lista vacía.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,tecnica
+1053,107,Sub-task,HU-07 T05 - Validar lectura de cifras y adaptación del panel a móvil.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Validar lectura de cifras y adaptación del panel a móvil.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1054,107,Sub-task,HU-07 T06 - Documentar el significado de cada contador.,"Tipo: Funcional.
+Responsabilidad propuesta: Lesli Esthefani De La Cruz.
+Resultado esperado: Documentar el significado de cada contador.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1055,107,Sub-task,HU-07 T07 - Ejecutar los criterios de HU-07 y contrastar panel con los datos.,"Tipo: Funcional.
+Responsabilidad propuesta: Angel Eramerlis Ciprian.
+Resultado esperado: Ejecutar los criterios de HU-07 y contrastar panel con los datos.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional
+1056,107,Sub-task,HU-07 T08 - Revisar consistencia de las cifras y presentación visual.,"Tipo: Funcional.
+Responsabilidad propuesta: Equipo completo.
+Resultado esperado: Revisar consistencia de las cifras y presentación visual.
+Al terminar, enlazar evidencia y revisar con el equipo.",To Do,,funcional

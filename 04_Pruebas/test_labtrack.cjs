@@ -1,0 +1,45 @@
+const path=require('path');const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const src=fs.readFileSync(path.join(__dirname,'../01_Sistema/LabTrack.html'),'utf8').split('<script>')[1].split('</script>')[0];
+const tests=[];function ok(name,f){f();tests.push(name)}
+function app(persisted){
+ const memory=persisted||new Map(),sessions=new Map(),nodes={},forms={},dialogs=[];
+ const node=id=>nodes[id]??=( {value:'',textContent:'',innerHTML:'',hidden:false,disabled:false,dataset:{},showModal(){this.open=true},close(){this.open=false},reset(){for(const id of ['c','n','l'])node(id).value='';node('s').value='Disponible';node('g').value='Electrónica'},querySelector(){return forms[id]??={}}});
+ const ctx={console,Date,Blob,Map,setTimeout:f=>f(),document:{getElementById:node,createElement:()=>({click(){}})},localStorage:{getItem:k=>memory.get(k)??null,setItem:(k,v)=>memory.set(k,v)},sessionStorage:{getItem:k=>sessions.get(k)??null,setItem:(k,v)=>sessions.set(k,v),removeItem:k=>sessions.delete(k)},URL:{createObjectURL:()=>'',revokeObjectURL(){}},alert:x=>dialogs.push(x),confirm:()=>true};
+ vm.createContext(ctx);vm.runInContext(src,ctx);
+ const run=s=>vm.runInContext(s,ctx),submit=()=>node('fm').onsubmit({preventDefault(){}}),action=(a,id)=>node('tb').onclick({target:{closest:()=>({dataset:{a,i:String(id)}})}});
+ const fill=(id,code,name='Equipo de prueba')=>{node('add').onclick();node('c').value=code;node('n').value=name;node('l').value='Lab 3';node('g').value='Electrónica';node('s').value='Disponible';submit()};
+ return {ctx,node,run,submit,action,fill,memory,forms,dialogs};
+}
+let a=app();
+ok('Tres equipos de ejemplo al primer acceso',()=>assert.equal(a.run('data.length'),3));
+ok('Credenciales incorrectas muestran error',()=>{a.node('u').value='admin';a.node('p').value='mala';a.node('lb').onclick();assert.match(a.node('le').textContent,/incorrectos/)});
+ok('Acceso válido muestra inventario',()=>{a.node('p').value='1234';a.node('lb').onclick();assert.equal(a.node('app').hidden,false)});
+ok('Alta válida guarda el equipo',()=>{a.fill(null,'EQ-DEMO');assert.equal(a.run('data.length'),4);assert.equal(a.node('dm').open,false)});
+const id=a.run('data.at(-1).id');
+ok('Alta rechaza código repetido sin distinguir mayúsculas',()=>{a.fill(null,'eq-demo');assert.equal(a.run('data.length'),4);assert.match(a.node('fe').textContent,/ya existe/)});
+ok('Alta rechaza nombre con espacios',()=>{a.fill(null,'EQ-X','   ');assert.equal(a.run('data.length'),4);assert.match(a.node('fe').textContent,/Completa/)});
+ok('Busqueda por código encuentra equipo',()=>{a.node('q').value='eq-demo';a.node('q').oninput();assert.match(a.node('tb').innerHTML,/EQ-DEMO/);assert.doesNotMatch(a.node('tb').innerHTML,/EQ-001/)});
+ok('Busqueda vacía muestra mensaje',()=>{a.node('q').value='inexistente';a.node('q').oninput();assert.equal(a.node('empty').hidden,false)});
+a.node('q').value='';a.node('q').oninput();a.node('dm').close();
+ok('Edición precarga nombre',()=>{a.action('ed',id);assert.equal(a.node('n').value,'Equipo de prueba')});
+ok('Edición guarda sin duplicar',()=>{a.node('n').value='Equipo editado';a.submit();assert.equal(a.run('data.length'),4);assert.equal(a.run(`data.find(x=>x.id===${id}).nombre`),'Equipo editado')});
+ok('Edición rechaza código de otro equipo',()=>{a.action('ed',id);a.node('c').value='EQ-001';a.submit();assert.match(a.node('fe').textContent,/ya existe/);assert.equal(a.run(`data.find(x=>x.id===${id}).codigo`),'EQ-DEMO')});
+a.node('dm').close();
+ok('Préstamo rechaza solicitante de solo espacios',()=>{a.action('loan',id);a.node('who').value='   ';a.forms.dl.onsubmit({preventDefault(){}});assert.match(a.node('loanError').textContent,/solicitante/)});
+ok('Préstamo rechaza fecha futura',()=>{a.node('who').value='Estudiante';a.node('loanDate').value='2999-01-01';a.forms.dl.onsubmit({preventDefault(){}});assert.match(a.node('loanError').textContent,/futura/)});
+ok('Préstamo guarda solicitante y fecha',()=>{a.node('loanDate').value=a.run('today()');a.forms.dl.onsubmit({preventDefault(){}});assert.equal(a.run(`data.find(x=>x.id===${id}).estado`),'Prestado');assert.equal(a.run(`data.find(x=>x.id===${id}).prestadoA`),'Estudiante');assert.ok(a.run(`data.find(x=>x.id===${id}).fechaPrestamo`))});
+ok('Filtro por prestados muestra solo el préstamo',()=>{a.node('f').value='Prestado';a.node('f').onchange();assert.match(a.node('tb').innerHTML,/EQ-DEMO/);assert.doesNotMatch(a.node('tb').innerHTML,/EQ-001/)});
+ok('No permite eliminar un equipo prestado',()=>{a.action('rm',id);assert.equal(a.run('data.length'),4);assert.match(a.dialogs.at(-1),/prestado/)});
+ok('Edición conserva préstamo',()=>{a.action('ed',id);assert.equal(a.node('s').disabled,true);a.node('n').value='Editado en préstamo';a.submit();assert.equal(a.run(`data.find(x=>x.id===${id}).estado`),'Prestado');assert.equal(a.run(`data.find(x=>x.id===${id}).prestadoA`),'Estudiante')});
+ok('Recarga conserva equipo y préstamo',()=>{const b=app(a.memory);assert.equal(b.run('data.length'),4);assert.equal(b.run(`data.find(x=>x.id===${id}).estado`),'Prestado')});
+ok('Devolución libera y limpia el préstamo actual',()=>{a.action('ret',id);assert.equal(a.run(`data.find(x=>x.id===${id}).estado`),'Disponible');assert.equal(a.run(`data.find(x=>x.id===${id}).fechaPrestamo`),'');assert.equal(a.run(`data.find(x=>x.id===${id}).prestadoA`),'')});
+ok('Cancelar eliminación conserva equipo',()=>{a.ctx.confirm=()=>false;a.action('rm',id);assert.equal(a.run('data.length'),4)});
+ok('Confirmar eliminación elimina y persiste',()=>{a.ctx.confirm=()=>true;a.action('rm',id);assert.equal(a.run('data.length'),3);assert.equal(app(a.memory).run('data.length'),3)});
+ok('Fallo de almacenamiento no aplica cambios y avisa',()=>{a.ctx.localStorage.setItem=()=>{throw Error('Sin espacio')};a.fill(null,'EQ-ERROR');assert.equal(a.run('data.length'),3);assert.match(a.node('notice').textContent,/No se pudo guardar/)});
+ok('Cierre de sesión oculta el inventario',()=>{a.node('out').onclick();assert.equal(a.node('app').hidden,true)});
+ok('Lista vacía persiste sin regenerar ejemplos',()=>{const b=app(new Map([['labtrack_equipos','[]']]));assert.equal(b.run('data.length'),0);b.run('render()');assert.match(b.node('stats').innerHTML,/<b>0<\/b>/)});
+ok('Carga de JSON corrupto avisa y permite abrir ejemplos',()=>{const b=app(new Map([['labtrack_equipos','x']]));b.run('render()');assert.equal(b.run('data.length'),3);assert.match(b.node('notice').textContent,/No se pudieron leer/)});
+ok('Contenido de usuario se escapa en HTML',()=>{const b=app();b.fill(null,'EQ-HTML','<img src=x onerror=alert(1)>');assert.match(b.node('tb').innerHTML,/&lt;img/);assert.doesNotMatch(b.node('tb').innerHTML,/<img src=x/)});
+ok('Respaldo descarga sin error de ejecución',()=>{const b=app();b.node('backup').onclick()});
+const report='VERIFICACIÓN DE LABTRACK\n\n'+tests.length+' comprobaciones de lógica aprobadas.\nMétodo: ejecución del JavaScript original con Node.js y un DOM simulado.\nSe probaron controladores y persistencia simulada, no un navegador gráfico real.\nNo se verificaron visualmente las pantallas, restricciones nativas de formularios ni la descarga real en el navegador.\nEl equipo debe realizar el recorrido del manual en su navegador antes de grabar.\n\n'+tests.map((x,i)=>`${i+1}. APROBADA: ${x}`).join('\n')+'\n';
+fs.writeFileSync(path.join(__dirname,'../03_Evidencias/Verificacion_del_sistema.txt'),report);console.log(report);

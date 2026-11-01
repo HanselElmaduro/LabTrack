@@ -1,0 +1,35 @@
+VERIFICACIÓN DE LABTRACK
+
+27 comprobaciones de lógica aprobadas.
+Método: ejecución del JavaScript original con Node.js y un DOM simulado.
+Se probaron controladores y persistencia simulada, no un navegador gráfico real.
+No se verificaron visualmente las pantallas, restricciones nativas de formularios ni la descarga real en el navegador.
+El equipo debe realizar el recorrido del manual en su navegador antes de grabar.
+
+1. APROBADA: Tres equipos de ejemplo al primer acceso
+2. APROBADA: Credenciales incorrectas muestran error
+3. APROBADA: Acceso válido muestra inventario
+4. APROBADA: Alta válida guarda el equipo
+5. APROBADA: Alta rechaza código repetido sin distinguir mayúsculas
+6. APROBADA: Alta rechaza nombre con espacios
+7. APROBADA: Busqueda por código encuentra equipo
+8. APROBADA: Busqueda vacía muestra mensaje
+9. APROBADA: Edición precarga nombre
+10. APROBADA: Edición guarda sin duplicar
+11. APROBADA: Edición rechaza código de otro equipo
+12. APROBADA: Préstamo rechaza solicitante de solo espacios
+13. APROBADA: Préstamo rechaza fecha futura
+14. APROBADA: Préstamo guarda solicitante y fecha
+15. APROBADA: Filtro por prestados muestra solo el préstamo
+16. APROBADA: No permite eliminar un equipo prestado
+17. APROBADA: Edición conserva préstamo
+18. APROBADA: Recarga conserva equipo y préstamo
+19. APROBADA: Devolución libera y limpia el préstamo actual
+20. APROBADA: Cancelar eliminación conserva equipo
+21. APROBADA: Confirmar eliminación elimina y persiste
+22. APROBADA: Fallo de almacenamiento no aplica cambios y avisa
+23. APROBADA: Cierre de sesión oculta el inventario
+24. APROBADA: Lista vacía persiste sin regenerar ejemplos
+25. APROBADA: Carga de JSON corrupto avisa y permite abrir ejemplos
+26. APROBADA: Contenido de usuario se escapa en HTML
+27. APROBADA: Respaldo descarga sin error de ejecución

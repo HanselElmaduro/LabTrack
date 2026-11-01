@@ -1,0 +1,20 @@
+# Archivos de herramientas y dependencias
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Configuración local y credenciales
+.env
+.env.*
+!.env.example
+
+# Grabaciones y paquetes de entrega: se comparten en OneDrive
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.zip
+
+# Archivos temporales de Office
+~$*

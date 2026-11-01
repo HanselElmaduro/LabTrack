@@ -1,0 +1,23 @@
+LABTRACK - EMPEZAR AQUI
+
+1. Extrae todo el ZIP.
+2. Abre 01_Sistema/LabTrack.html. Usuario: admin. Contraseña: 1234.
+3. Revisa el documento de 02_Planificacion. Los nombres y matrículas están completos; confirmen los roles propuestos.
+4. Confirma fechas: el calendario del 2 al 13 de noviembre es una propuesta.
+5. El backlog YA está cargado en Jira. Abre los enlaces de 03_Evidencias. NO importes otra vez Backlog_Jira.csv: generarías duplicados. LabTrack Sprint 1 ya está preparado con las siete historias. Confirma fechas, alcance y cuentas reales de los responsables.
+6. Graba Scrum Poker con el equipo. Registra votos reales y actualiza los puntos en Jira.
+7. Ensaya y graba el incremento; demuestra el mismo sistema en vivo en clase.
+8. Completa 03_Evidencias/Enlaces_de_entrega.txt y organiza la carpeta en OneDrive.
+9. Verifica accesos y que los 7 integrantes entreguen individualmente.
+10. No modifiques la entrega después del cierre.
+
+ESTADO REAL
+- Sistema local preparado; consultar Verificacion_del_sistema.txt para el alcance de las pruebas.
+- Backlog creado en Jira: 4 épicas, 7 historias y 56 subtareas.
+- Sprints y estimación en puntos de historia habilitados.
+- LabTrack Sprint 1 preparado, sin iniciar y con fechas pendientes.
+- Referencias_Jira.csv contiene las claves y enlaces reales.
+- Sin videos grabados ni votos reales.
+- Sin carpeta compartida en OneDrive, con Jira enlazado; faltan enlaces de videos, OneDrive e invitaciones.
+- Login local de demostración; datos en este navegador. No hay backend ni sincronización.
+- El respaldo JSON se descarga; no hay importador de restauración.

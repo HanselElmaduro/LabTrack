@@ -1,0 +1,22 @@
+LABTRACK - ENLACES DE ENTREGA
+
+Completar únicamente con enlaces reales y verificar sus permisos antes de entregar.
+
+Carpeta raíz OneDrive: PENDIENTE
+Subcarpeta de videos: PENDIENTE
+Video Scrum Poker: PENDIENTE
+Video incremento funcional: PENDIENTE
+Subcarpeta documentación: PENDIENTE
+Proyecto Jira: https://hanselh151.atlassian.net/issues?jql=project%20%3D%20KAN%20AND%20labels%20%3D%20labtrack
+Primera épica: https://hanselh151.atlassian.net/browse/KAN-4
+Backlog cargado: 4 épicas, 7 historias y 56 subtareas.
+Sprint: LabTrack Sprint 1 (ID 1), preparado en el tablero 2; sin iniciar y con fechas pendientes.
+Historias: KAN-8, KAN-17, KAN-26, KAN-35, KAN-44, KAN-53 y KAN-62.
+Estimación en puntos de historia habilitada; valores finales pendientes de Scrum Poker.
+Asignaciones: responsables propuestos en las descripciones; las cuentas reales aún no están asignadas.
+Repositorio GitHub: https://github.com/HanselElmaduro/LabTrack
+El repositorio es privado; los colaboradores y evaluadores necesitan acceso por sus cuentas reales de GitHub.
+
+Acceso: ktejada@itla.edu.do y edwintejadar@gmail.com, si los recursos no son públicos.
+La aplicación debe demostrarse en vivo; no es obligatorio publicar el sistema.
+Cada integrante debe subir la entrega individualmente. No modificar después del cierre.
